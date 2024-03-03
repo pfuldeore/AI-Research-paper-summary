@@ -4,15 +4,9 @@ load_dotenv()
 import streamlit as st
 import os
 from PyPDF2 import PdfReader
-import textwrap
 import google.generativeai as genai
-from IPython.display import Markdown
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-def to_markdown(text):
-  text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
 def get_gemini_response(input,pdf_content):
     model=genai.GenerativeModel('gemini-pro')
